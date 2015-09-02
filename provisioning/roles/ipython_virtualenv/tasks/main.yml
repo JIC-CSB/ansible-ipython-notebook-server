@@ -41,3 +41,12 @@
 - name: update ipython_notebook_config.py
   template: src=ipython_notebook_config.py
             dest=/home/ipython/.ipython/profile_nbserver/
+
+- name: add supervisord ini file to /etc/supervisord.d
+  copy: src=ipython_server.ini
+        dest=/etc/supervisord.d
+  notify: restart supervisord
+
+- name: start ipython notebook server using supervisord
+  supervisorctl: name=ipython_server
+                 state=started

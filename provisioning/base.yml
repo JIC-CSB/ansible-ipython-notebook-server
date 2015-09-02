@@ -6,4 +6,5 @@
   roles:
     - system_update
     - packages
+    - supervisord
     - ipython_virtualenv
