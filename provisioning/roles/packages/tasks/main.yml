@@ -17,3 +17,9 @@
     - zlib-devel
     - freetype-devel
     - freeimage
+    - supervisor
+
+- name: start supervisord
+  service: name=supervisord
+           enabled=yes
+           state=started
