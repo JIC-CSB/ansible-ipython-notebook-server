@@ -1,0 +1,43 @@
+---
+
+- name: create ipython user
+  user: name=ipython
+
+- name: create a ipython virtual environment
+  sudo: yes
+  sudo_user: ipython
+  command: virtualenv /home/ipython/env
+  args:
+    creates: /home/ipython/env/bin/activate
+
+- name: upgrade pip
+  sudo: yes
+  sudo_user: ipython
+  command: /home/ipython/env/bin/pip install --upgrade pip
+  
+- name: provision virtual environment
+  sudo: yes
+  sudo_user: ipython
+  pip: name={{ item }} virtualenv=/home/ipython/env
+  with_items:
+    - numpy
+    - scipy
+    - matplotlib
+
+- name: install ipython notebook
+  sudo: yes
+  sudo_user: ipython
+  pip: name="ipython[notebook]"
+       version=3
+       virtualenv=/home/ipython/env
+
+- name: configure the ipython notebook server
+  sudo: yes
+  sudo_user: ipython
+  command: /home/ipython/env/bin/ipython profile create nbserver
+  args:
+    creates: /home/ipython/.ipython/profile_nbserver/ipython_notebook_config.py
+
+- name: update ipython_notebook_config.py
+  template: src=ipython_notebook_config.py
+            dest=/home/ipython/.ipython/profile_nbserver/
