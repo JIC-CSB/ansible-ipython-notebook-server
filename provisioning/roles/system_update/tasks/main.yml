@@ -1,0 +1,8 @@
+---
+
+- name: update the system
+  yum: name=* state=latest
+
+- name: add the epel repository
+  yum: name=epel-release
+       state=present

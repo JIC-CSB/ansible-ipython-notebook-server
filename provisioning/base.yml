@@ -1,0 +1,8 @@
+---
+
+- name: install ipython notebook
+  hosts: centos7
+  
+  roles:
+    - system_update
+    - packages

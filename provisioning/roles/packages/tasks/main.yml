@@ -1,0 +1,19 @@
+---
+
+- name: install development tools
+  yum: name="@Development tools"
+       state=present
+
+- name: install system packages
+  yum: name={{ item }} state=present
+  with_items:
+    - python-pip
+    - python-virtualenv
+    - atlas-devel
+    - lapack-devel
+    - blas-devel
+    - python-devel
+    - libpng-devel
+    - zlib-devel
+    - freetype-devel
+    - freeimage
