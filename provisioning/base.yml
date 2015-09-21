@@ -6,5 +6,6 @@
   roles:
     - system_update
     - packages
+    - firewall_config
     - supervisord
     - ipython_virtualenv

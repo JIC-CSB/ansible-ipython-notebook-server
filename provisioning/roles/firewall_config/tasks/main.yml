@@ -1,0 +1,7 @@
+---
+
+- name: open up port 8888
+  firewalld: port=8888/tcp
+             permanent=true
+             state=enabled
+  notify: restart firewalld
