@@ -1,0 +1,10 @@
+---
+
+- name: checkout latest ipython notebooks from github
+  sudo: yes
+  sudo_user: ipython
+  git: repo={{ item.repo }}
+       dest=/home/ipython/notebooks/{{ item.dir }}
+       force=yes
+  with_items:
+    - {repo: "https://github.com/JIC-CSB/python-intro-ipython-notebook.git", dir: "python-introduction"}

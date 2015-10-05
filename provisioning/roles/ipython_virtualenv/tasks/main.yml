@@ -31,6 +31,12 @@
        version=3
        virtualenv=/home/ipython/env
 
+- name: create notebooks directory
+  sudo: yes
+  sudo_user: ipython
+  file: name=/home/ipython/notebooks
+        state=directory
+
 - name: configure the ipython notebook server
   sudo: yes
   sudo_user: ipython
